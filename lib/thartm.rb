@@ -95,6 +95,24 @@ class Rrtm
 		v = findTask(id)
 		@rtm.tasks.setName :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :name => newname
 	end
+	
+	def setDueDate(id,due)
+	  v = findTask(id)
+		@rtm.tasks.setDueDate :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :due => due, :parse => 1  
+	end
+	
+	def setPriority(id, priority)
+	  v = findTask(id)
+	  @rtm.tasks.setPriority :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :priority => priority		
+	end
+	
+	def update(params)
+	  v = findTask(params['id'])
+	  @rtm.tasks.setDueDate :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :due => params['due'], :parse => 1 
+	  @rtm.tasks.setName :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :name => params['title'] 
+	  @rtm.tasks.setPriority :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id, :priority => params['priority']
+	  @rtm.tasks.complete :timeline => @timeline,:list_id =>v.list_id , :taskseries_id => v.taskseries_id, :task_id => v.task_id unless params['complete'].nil?
+	end
 
 	def getTimezone
 		sets = @rtm.settings.getList
