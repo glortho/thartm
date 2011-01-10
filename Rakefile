@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "thartm"
+    gem.name = "thartmx"
     gem.summary = %Q{rtmapi based remember the milk cli.}
     gem.description = %Q{rtmapi fixed version with a simple cli added, rtmapi package fixed to work with libxml2 version > 2.7}
     gem.email = "thamayor@gmail.com"
@@ -51,7 +51,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "thartm #{version}"
+  rdoc.title = "thartmx #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
